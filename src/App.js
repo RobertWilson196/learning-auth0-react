@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Link } from 'react-router-dom';
 import Auth from './services/auth';
 
-
 //components
 import Home from './components/Home';
 import Profile from './components/Profile';
@@ -13,9 +12,7 @@ class App extends Component {
     super();
     this.auth = new Auth();
   }
-  componentDidMount() {
-    this.auth.login();
-  }
+
   render() {
     return (
       <div>
@@ -25,6 +22,11 @@ class App extends Component {
           </li>
           <li>
             <Link to='/profile'>Profile</Link>
+          </li>
+          <li>
+            <button onClick={() => this.auth.login()}>
+              Login
+            </button>
           </li>
         </ul>
         <Route path='/' exact component={Home} />
