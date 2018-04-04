@@ -7,6 +7,7 @@ import Auth from './services/auth';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Callback from './components/Callback';
+import PrivateRoute from './components/PrivateRoute';
 
 class App extends Component {
   constructor() {
@@ -25,18 +26,19 @@ class App extends Component {
           <li>
             <Link to='/'>Home</Link>
           </li>
-          <li>
+          <li style={{display: this.auth.isAuthenticated() ? 'list-item' : 'none'}}>
             <Link to='/profile'>Profile</Link>
           </li>
-          <li>
-            <button onClick={ () => this.auth.login() }>Login</button>
+          <li style={{display: this.auth.isAuthenticated() ? 'none' : 'list-item'}}>
+            <button onClick={() => this.auth.login()}>Login</button>
           </li>
-          <li>
+          <li style={{visibility: this.auth.isAuthenticated() ? 'visible' : 'hidden',
+                      opacity: this.auth.isAuthenticated() ? 1 : 0}}>
             <button onClick={ () => this.auth.logout() }>Logout</button>
           </li>
         </ul>
         <Route path='/' exact component={Home} />
-        <Route path='/profile' exact component={Profile} />
+        <PrivateRoute path='/profile' exact component={Profile} auth={this.auth} />
         <Route path='/callback' exact render={(props) => {
           this.handleAuthentication(props);
         return  <Callback {...props} />
