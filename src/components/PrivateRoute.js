@@ -6,7 +6,7 @@
       {...rest}
       render={props =>
         auth.isAuthenticated() ? (
-          <Component {...props} />
+          <Component {...props} {...rest} />
         ) : (
           <Redirect
             to={{

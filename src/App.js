@@ -17,7 +17,7 @@ class App extends Component {
       profile: {}
     }
   }
-  
+
   componentWillMount() {
     const { getProfile, userProfile } = this.auth;
     if(!userProfile) {
@@ -57,10 +57,10 @@ class App extends Component {
           </li>
         </ul>
         <Route path='/' exact component={Home} />
-        <PrivateRoute path='/profile' exact component={Profile} auth={this.auth} />
+        <PrivateRoute path='/profile' exact component={Profile} auth={this.auth} {...this.state}  />
         <Route path='/callback' exact render={(props) => {
           this.handleAuthentication(props);
-        return  <Callback {...props} />
+        return  <Callback {...props}/>
         }} />
       </div>
     );
