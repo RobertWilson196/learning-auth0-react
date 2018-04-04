@@ -29,9 +29,10 @@ class App extends Component {
             <Link to='/profile'>Profile</Link>
           </li>
           <li>
-            <button onClick={() => this.auth.login()}>
-              Login
-            </button>
+            <button onClick={ () => this.auth.login() }>Login</button>
+          </li>
+          <li>
+            <button onClick={ () => this.auth.logout() }>Logout</button>
           </li>
         </ul>
         <Route path='/' exact component={Home} />
